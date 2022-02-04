@@ -19,7 +19,7 @@ $(document).ready(function(){
             let article = $("<article></article>");
             let HeroName = $("<h2></h2>");
             let Powers = $("<ul></ul>");
-            let button = $("<button></button>");
+            let button = $("<button class='addPower'></button>");
             HeroName.append(member.name);
             member.powers.forEach((power) => {
                 Powers.append("<li class='power'>" + power + "</li>");
@@ -36,16 +36,15 @@ $(document).ready(function(){
         })   
     });
 
-    $(document).on("click","button", function(){
+    $(document).on("click",".addPower", function(){
         let newPower = prompt("Please enter the power", "Ultimate Power");
         if (newPower != null) {
             $(this).parent().children("ul")
-                                        .append("<li>" + newPower + "</li>");
+                                        .append("<li class='power'>" + newPower + "</li>");
         }
     });
 
     function handlerIn(){
-        console.log("dgthtfh");
         let deleteButton = $("<button id='delete'>Delete</button>");
         $(this).append(deleteButton);
         $(deleteButton).fadeIn("slow");
@@ -56,6 +55,11 @@ $(document).ready(function(){
         $("#delete").remove();
     }  
 
+    function deletePower(){
+        $(this).parent().remove();
+    }
+
     $(document).on("mouseenter", ".power", handlerIn );
     $(document).on("mouseleave", ".power", handlerOut );
+    $(document).on("click", "#delete", deletePower );
 });
