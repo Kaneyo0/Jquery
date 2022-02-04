@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+     <meta charset="utf-8">
+     <title>jQuery</title>
+     <script src="jquery.js"></script>
+     <script>
+          $(document).ready(function(){
+               
+               function handlerIn(){
+                    xOffset = 110;
+		          yOffset = 30;
+                    var $image = $(this).attr("href");
+                    var $title = $(this).attr("title");
+                    var $newdiv = $( "<div id='zoom'></div>" );
+                    $("body").append($newdiv);
+                    $("#zoom").append($('<img>',{src: $image}));
+                    $("#zoom").append($title);
+                    $("#zoom").css("top",(xOffset) + "px")
+				          .css("left",(yOffset) + "px")
+				          .fadeIn("slow");
+
+               }
+
+               function handlerOut(){
+                    $("#zoom").fadeOut("slow");
+                    $("#zoom").remove();
+               }  
+
+               $(".zoom").hover( handlerIn, handlerOut );
+          })
+     </script>
+     <style> 
+     body { margin: 0px;
+          padding: 10px;
+          font:80% Arial, sans-serif;}
+     h2 { clear:both;
+          font-size:160%;
+          font-weight:normal;
+          margin: 0px;
+          padding-top: 10px;
+          padding-bottom: 15px;}
+     a { text-decoration:none;
+     color:black;}
+     img { border: 1px solid black;}
+     ul,li { margin: 0px;
+          padding: 0px;}
+     li { list-style: none;
+          float: left;
+          display: inline;
+          margin-right: 10px;}
+     #zoom { position: absolute;
+               border: 1px solid #333;
+               background: #333;
+               padding: 3px;
+               display: none;
+               color: #fff;
+     }
+     </style>
+</head>
+<body>
+     <h2>Effet de Zoom avec légende</h2>
+     <ul>
+          <li><a href="ours1.jpg" class="zoom" title="Ours polaire en danger 1"><img src="pt_ours1.jpg" alt=""></a></li>
+          <li><a href="ours2.jpg" class="zoom" title="Ours polaire en danger 2"><img src="pt_ours2.jpg" alt=""></a></li>
+          <li><a href="ours3.jpg" class="zoom" title="Ours polaire en danger 3"><img src="pt_ours3.jpg" alt=""></a></li>
+     </ul>
+</body>
+</html>

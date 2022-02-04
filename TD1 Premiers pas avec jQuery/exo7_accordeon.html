@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>jQuery</title>
+<script src="jquery.js"></script>
+<script>
+$(document).ready(function(){
+	$(".accordeon p").hide();
+	$("h3").on("click", function(){
+		if ($(this).next().is(":hidden")){
+			$(this).css("background", "#9cf url(arrow.gif) no-repeat right 5px");
+		} else {
+			$(this).css("background", "#9cf url(arrow.gif) no-repeat right -51px");
+		}
+		$(this).next().slideToggle("ul:first");
+		return false;
+	})
+	.css("cursor", "pointer")
+});
+</script>
+<style>
+.accordeon { width: 250px;
+	     border-bottom: solid 1px black;}
+.accordeon h3 { margin: 0;
+	        background: #9cf url(arrow.gif) no-repeat right -51px;
+	        padding: 7px 15px;
+	        font: bold 0.9em Arial, sans-serif;
+                border: solid 1px black;
+                border-bottom: none;
+	          cursor: pointer;}
+.accordeon h3:hover { background-color: #ccecff;}
+.accordeon h3.active { background-position: right 5px;}
+.accordeon p { margin: 0;
+               font: 0.9em Arial, sans-serif;
+               padding: 10px 15px 10px;
+               border-left: solid 1px black;
+	       border-right: solid 1px black;}
+</style>
+</head>
+<body>
+<br />
+<div class="accordeon">
+<h3>Formation Word</h3>
+<p>- Word 2007<br />- Word 2010<br>- Word 2013</p>
+<h3>Formation Excel</h3>
+<p>- Excel 2007<br />- Excel 2010<br>- Excel 2013</p>
+<h3>Formation PowerPoint</h3>
+<p>- PowerPoint 2007<br />- PowerPoint 2010<br>- PowerPoint 2013</p>
+<h3>Formation Outlook</h3>
+<p>- Outlook 2007<br />- Outlook 2010<br>- Outlook 2013</p>
+<h3>Formation Access</h3>
+<p>- Access 2007<br />- Access 2010<br>- Access 2013</p>
+</div>
+</body>
+</html>

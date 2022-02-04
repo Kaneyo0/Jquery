@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>jQuery</title>
+<script src="jquery.js"></script>
+<script type="text/javascript"> 
+	this.zoom_image = function(){	
+		xOffset = 10;
+		yOffset = 30;
+		var texte;
+		$("a.zoom").hover(			
+			function(e){
+				texte = $(this).attr('title');
+				$(this).attr('title' , '');	
+				var legende = (texte != "") ? "<br/>" + texte : "";
+				$("body").append("<p id='zoom'><img src='"+ $(this).attr('href') +"' alt='Visualisation image' />"+ legende +"</p>");
+				$("#zoom")
+				.css("top",(e.pageY - xOffset) + "px")
+				.css("left",(e.pageX + yOffset) + "px")
+				.fadeIn("slow");						
+			},
+			function(){
+				$(this).attr('title', texte);	
+				$("#zoom").remove();
+			}
+		);	
+		
+		$("a.zoom").mousemove(function(e){
+			$("#zoom")
+			.css("top",(e.pageY - xOffset) + "px")
+			.css("left",(e.pageX + yOffset) + "px");
+		});			
+	};
+
+	$(document).ready(function(){
+		zoom_image();
+	});
+</script>
+<style> 
+body { margin: 0px;
+	 padding: 10px;
+	 font:80% Arial, sans-serif;}
+h2 { clear:both;
+     font-size:160%;
+     font-weight:normal;
+     margin: 0px;
+     padding-top: 10px;
+     padding-bottom: 15px;}
+a { text-decoration:none;
+    color:black;}
+img { border: 1px solid black;}
+ul,li { margin: 0px;
+	  padding: 0px;}
+li { list-style: none;
+     float: left;
+     display: inline;
+     margin-right: 10px;}
+#zoom { position: absolute;
+	     border: 1px solid #333;
+	     background: #333;
+	     padding: 3px;
+	     display: none;
+	     color: #fff;}
+</style>
+</head>
+<body>
+<h2>Effet de Zoom avec légende</h2>
+<ul>
+<li><a href="ours1.jpg" class="zoom" title="Ours polaire en danger"><img src="pt_ours1.jpg" alt=""></a></li>
+<li><a href="ours2.jpg" class="zoom" title="Ours polaire en danger"><img src="pt_ours2.jpg" alt=""></a></li>
+<li><a href="ours3.jpg" class="zoom" title="Ours polaire en danger"><img src="pt_ours3.jpg" alt=""></a></li>
+</ul>
+</body>
+</html>
+
