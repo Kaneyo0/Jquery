@@ -17,6 +17,7 @@ $(document).ready(function(){
     
         squad.members.forEach((member) => {
             let article = $("<article></article>");
+            let avatar = $("<img src='' width='50px' height='50px' alt='avatar' /></img>");
             let HeroName = $("<h2></h2>");
             let Powers = $("<ul></ul>");
             let button = $("<button class='addPower'></button>");
@@ -27,6 +28,7 @@ $(document).ready(function(){
             button.append("Add Power")
             $(article)
                         .append(HeroName)
+                        .append(avatar)
                         .append("<p>Identité secrète :" + member.secretIdentity + "</p>")
                         .append("<p>Age :" + member.age + "</p>")
                         .append("<p>Pouvoirs :</p>")
@@ -46,20 +48,33 @@ $(document).ready(function(){
 
     function handlerIn(){
         let deleteButton = $("<button id='delete'>Delete</button>");
-        $(this).append(deleteButton);
+        let modifyButton = $("<button id='modify'>Modify</button>");
+        let buttons = $("<ul></ul>");
+        $(this).append(buttons);
+        $(buttons)     
+                .append(deleteButton)
+                .append(modifyButton);
         $(deleteButton).fadeIn("slow");
+        $(modifyButton).fadeIn("slow");
     }
 
     function handlerOut(){
-        $("#delete").fadeOut("slow");
-        $("#delete").remove();
+        $("#delete").parent().remove();
     }  
 
     function deletePower(){
-        $(this).parent().remove();
+        $(this).parent().parent().remove();
+    }
+
+    function modifyPower(){
+        let newPowerName = prompt("Please enter the new power name", $(this).parent().parent().text());
+        if (newPowerName != null) {
+            $(this).parent().parent().html(newPowerName);
+        }
     }
 
     $(document).on("mouseenter", ".power", handlerIn );
     $(document).on("mouseleave", ".power", handlerOut );
     $(document).on("click", "#delete", deletePower );
+    $(document).on("click", "#modify", modifyPower );
 });
