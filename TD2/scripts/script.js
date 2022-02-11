@@ -10,17 +10,17 @@ $(document).ready(function(){
         let section      = $("<section class='team'></section>");
         let players      = $("<section class='players'></section>")
         let playerButton = $("<button id='addPlayer'>Add Player</button>");
-        let h1           = $("<h1></h1>");
-        let p            = $("<p></p>");
+        let teamName           = $("<h1></h1>");
+        let teamBase            = $("<p></p>");
         $("body").append(section);
         $(section)
-                .append(h1)
+                .append(teamName)
                 .append(playerButton)
-                .append(p)
+                .append(teamBase)
                 .append(players);    
     
-        h1.append(squad.squadName);
-        p.append("Base: " + squad.homeTown + " //" + squad.formed);
+        teamName.append(squad.squadName);
+        teamBase.append("Base: " + squad.homeTown + " //" + squad.formed);
         $(".players").sortable({
             revert: true
         });
